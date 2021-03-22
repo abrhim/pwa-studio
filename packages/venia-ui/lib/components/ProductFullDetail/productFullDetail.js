@@ -15,6 +15,10 @@ import FormError from '../FormError';
 import { fullPageLoadingIndicator } from '../LoadingIndicator';
 import { QuantityFields } from '../CartPage/ProductListing/quantity';
 import RichText from '../RichText';
+import {
+    VeniaProductRecommendations,
+    PageTypes
+} from '@magento/venia-product-recommendations';
 
 import defaultClasses from './productFullDetail.css';
 import {
@@ -199,6 +203,7 @@ const ProductFullDetail = props => {
                     <strong>{productDetails.sku}</strong>
                 </section>
             </Form>
+            <VeniaProductRecommendations pageType={PageTypes.PRODUCT} />
         </Fragment>
     );
 };
