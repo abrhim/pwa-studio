@@ -378,7 +378,7 @@ const CheckoutPage = props => {
             {checkoutContent}
             {addressBookElement}
             {signInElement}
-            <VeniaProductRecommendations pageType={PageTypes.CHECKOUT}
+            <VeniaProductRecommendations pageType={PageTypes.CHECKOUT} />
         </div>
     );
 };
