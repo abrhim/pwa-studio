@@ -10,6 +10,11 @@ import { useIntl } from 'react-intl';
 
 import defaultClasses from './cms.css';
 
+import {
+    PageTypes,
+    VeniaProductRecommendations
+} from '@magento/venia-product-recommendations';
+
 const CMSPage = props => {
     const { id } = props;
 
@@ -51,19 +56,23 @@ const CMSPage = props => {
                 <Meta name="description" content={meta_description} />
                 {headingElement}
                 <RichContent html={content} />
+                <VeniaProductRecommendations pageType={PageTypes.CMS} />
             </Fragment>
         );
     }
 
     // Fallback to a category list if there is no cms content.
     return (
-        <CategoryList
-            title={formatMessage({
-                id: 'cms.shopByCategory',
-                defaultMessage: 'Shop by category'
-            })}
-            id={rootCategoryId}
-        />
+        <Fragment>
+            <CategoryList
+                title={formatMessage({
+                    id: 'cms.shopByCategory',
+                    defaultMessage: 'Shop by category'
+                })}
+                id={rootCategoryId}
+            />
+            <VeniaProductRecommendations pageType={PageTypes.CMS} />
+        </Fragment>
     );
 };
 

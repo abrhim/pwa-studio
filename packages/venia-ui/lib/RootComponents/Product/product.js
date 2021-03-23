@@ -7,6 +7,10 @@ import { StoreTitle, Meta } from '@magento/venia-ui/lib/components/Head';
 import { fullPageLoadingIndicator } from '@magento/venia-ui/lib/components/LoadingIndicator';
 import ProductFullDetail from '@magento/venia-ui/lib/components/ProductFullDetail';
 import mapProduct from '@magento/venia-ui/lib/util/mapProduct';
+import {
+    VeniaProductRecommendations,
+    PageTypes
+} from '@magento/venia-product-recommendations';
 
 /*
  * As of this writing, there is no single Product query type in the M2.3 schema.
@@ -43,6 +47,7 @@ const Product = () => {
             <StoreTitle>{product.name}</StoreTitle>
             <Meta name="description" content={product.meta_description} />
             <ProductFullDetail product={product} />
+            <VeniaProductRecommendations pageType={PageTypes.PRODUCT} />
         </Fragment>
     );
 };
