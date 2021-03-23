@@ -105,5 +105,9 @@
       "path": "./packages/venia-concept/dist/+([0-9]).*.js",
       "maxSize": "100 kB"
     }
-  ]
+  ],
+  "dependencies": {
+    "@magento/venia-product-recommendations": "~0.2.0",
+    "recommendations-pwa-collector": "~1.0.0-beta.11"
+  }
 }

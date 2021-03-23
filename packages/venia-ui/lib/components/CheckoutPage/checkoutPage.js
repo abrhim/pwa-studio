@@ -26,6 +26,10 @@ import ShippingMethod from './ShippingMethod';
 import ShippingInformation from './ShippingInformation';
 import OrderConfirmationPage from './OrderConfirmationPage';
 import ItemsReview from './ItemsReview';
+import {
+    VeniaProductRecommendations,
+    PageTypes
+} from '@magento/venia-product-recommendations';
 
 import defaultClasses from './checkoutPage.css';
 
@@ -374,6 +378,7 @@ const CheckoutPage = props => {
             {checkoutContent}
             {addressBookElement}
             {signInElement}
+            <VeniaProductRecommendations pageType={PageTypes.CHECKOUT}
         </div>
     );
 };

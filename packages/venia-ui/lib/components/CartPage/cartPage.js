@@ -11,6 +11,10 @@ import ProductListing from './ProductListing';
 import PriceSummary from './PriceSummary';
 import defaultClasses from './cartPage.css';
 import { GET_CART_DETAILS } from './cartPage.gql';
+import {
+    VeniaProductRecommendations,
+    PageTypes
+} from '@magento/venia-product-recommendations';
 
 /**
  * Structural page component for the shopping cart.
@@ -99,6 +103,7 @@ const CartPage = props => {
                     </div>
                 </div>
             </div>
+            <VeniaProductRecommendations pageType={PageTypes.CART} />
         </div>
     );
 };
