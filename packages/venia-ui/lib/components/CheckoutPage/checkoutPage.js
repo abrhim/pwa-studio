@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import { shape, string } from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { AlertCircle as AlertCircleIcon } from 'react-feather';
 import { Link } from 'react-router-dom';
@@ -32,6 +33,7 @@ import {
 } from '@magento/venia-product-recommendations';
 
 import defaultClasses from './checkoutPage.css';
+import ScrollAnchor from '../ScrollAnchor/scrollAnchor';
 
 const errorIcon = <Icon src={AlertCircleIcon} size={20} />;
 
@@ -64,8 +66,12 @@ const CheckoutPage = props => {
         setCheckoutStep,
         setIsUpdating,
         setShippingInformationDone,
+        scrollShippingInformationIntoView,
         setShippingMethodDone,
+        scrollShippingMethodIntoView,
         setPaymentInformationDone,
+        shippingInformationRef,
+        shippingMethodRef,
         resetReviewOrderButtonClicked,
         handleReviewOrder,
         reviewOrderButtonClicked,
@@ -166,6 +172,7 @@ const CheckoutPage = props => {
                 <ShippingMethod
                     pageIsUpdating={isUpdating}
                     onSave={setShippingMethodDone}
+                    onSuccess={scrollShippingMethodIntoView}
                     setPageIsUpdating={setIsUpdating}
                 />
             ) : (
@@ -333,13 +340,18 @@ const CheckoutPage = props => {
                 </div>
                 {signInContainerElement}
                 <div className={classes.shipping_information_container}>
-                    <ShippingInformation
-                        onSave={setShippingInformationDone}
-                        toggleActiveContent={toggleAddressBookContent}
-                    />
+                    <ScrollAnchor ref={shippingInformationRef}>
+                        <ShippingInformation
+                            onSave={setShippingInformationDone}
+                            onSuccess={scrollShippingInformationIntoView}
+                            toggleActiveContent={toggleAddressBookContent}
+                        />
+                    </ScrollAnchor>
                 </div>
                 <div className={classes.shipping_method_container}>
-                    {shippingMethodSection}
+                    <ScrollAnchor ref={shippingMethodRef}>
+                        {shippingMethodSection}
+                    </ScrollAnchor>
                 </div>
                 <div className={classes.payment_information_container}>
                     {paymentInformationSection}
@@ -357,6 +369,7 @@ const CheckoutPage = props => {
         <AddressBook
             activeContent={activeContent}
             toggleActiveContent={toggleAddressBookContent}
+            onSuccess={scrollShippingInformationIntoView}
         />
     ) : null;
 
@@ -384,3 +397,30 @@ const CheckoutPage = props => {
 };
 
 export default CheckoutPage;
+
+CheckoutPage.propTypes = {
+    classes: shape({
+        root: string,
+        checkoutContent: string,
+        checkoutContent_hidden: string,
+        heading_container: string,
+        heading: string,
+        cartLink: string,
+        stepper_heading: string,
+        shipping_method_heading: string,
+        payment_information_heading: string,
+        signInContainer: string,
+        signInLabel: string,
+        signInButton: string,
+        empty_cart_container: string,
+        shipping_information_container: string,
+        shipping_method_container: string,
+        payment_information_container: string,
+        price_adjustments_container: string,
+        items_review_container: string,
+        summaryContainer: string,
+        formErrors: string,
+        review_order_button: string,
+        place_order_button: string
+    })
+};
